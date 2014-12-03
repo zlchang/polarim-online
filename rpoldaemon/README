@@ -1,0 +1,3 @@
+Online pC-polarimeters daemon. Hooks CDEV variable dataAcquisitionS and 
+process changing of this variable to start/stop polarimeter measurement.
+Rebuild with cmake.
