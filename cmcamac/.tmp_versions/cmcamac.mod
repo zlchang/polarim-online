@@ -1,2 +1,2 @@
-/home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.ko
-/home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.o
+/home/polarim/cmcamac/cmcamac.ko
+/home/polarim/cmcamac/cmcamac.o

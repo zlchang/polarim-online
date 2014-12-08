@@ -25,10 +25,11 @@ USESOLIBS = yes
 INC = -I../include -I/usr/include/cernlib/2006/cfortran
 USER_FFLAGS = -m32
 USER_CXXFLAGS = $(shell root-config --cflags)
-LDFLAGS =  -L/usr/lib/cernlib/2006-g77/lib -L/usr/lib64/cernlib/2006-g77/lib -lpacklib -lkernlib -lmathlib $(shell root-config --libs) -lgfortranbegin -lgfortran
+LDFLAGS =  -L/usr/lib/cernlib/2006-g77/lib $(shell root-config --libs)
 
 PROG1 = rhic2hbook
 SRCS1 = rhic2hbook.f rdatautilp.cpp rdatautil.cpp
 LIBS1 = cdevCns cdev includeCdev GenData rhicError Async setHist
+SYSLIBS1 = packlib kernlib mathlib  gfortranbegin gfortran g2c
 
 include $(MAKEDIR)/MakeApp.inc

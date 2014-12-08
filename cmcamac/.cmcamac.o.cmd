@@ -1,7 +1,7 @@
-cmd_/home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.o := gcc -Wp,-MD,/home/cfsd/alekseev/proj/cnipol/online/cmcamac/.cmcamac.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include -Iinclude  -I/usr/src/kernels/2.6.32-431.23.3.el6.x86_64/include/uapi -I/usr/src/kernels/2.6.32-431.23.3.el6.x86_64/arch/x86/include -include /usr/src/kernels/2.6.32-431.23.3.el6.x86_64/include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -m64 -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -fstack-protector -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_AVX=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -Wframe-larger-than=2048 -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -g -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-dwarf2-cfi-asm -fconserve-stack  -DMODULE -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(cmcamac)"  -D"KBUILD_MODNAME=KBUILD_STR(cmcamac)" -D"DEBUG_HASH=22" -D"DEBUG_HASH2=20" -c -o /home/cfsd/alekseev/proj/cnipol/online/cmcamac/.tmp_cmcamac.o /home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.c
+cmd_/home/polarim/cmcamac/cmcamac.o := gcc -Wp,-MD,/home/polarim/cmcamac/.cmcamac.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-redhat-linux/4.4.7/include -Iinclude  -I/usr/src/kernels/2.6.32-431.23.3.el6.x86_64/include/uapi -I/usr/src/kernels/2.6.32-431.23.3.el6.x86_64/arch/x86/include -include /usr/src/kernels/2.6.32-431.23.3.el6.x86_64/include/linux/kconfig.h -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -O2 -m64 -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -fstack-protector -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_AVX=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -Wframe-larger-than=2048 -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -g -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-dwarf2-cfi-asm -fconserve-stack  -DMODULE -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(cmcamac)"  -D"KBUILD_MODNAME=KBUILD_STR(cmcamac)" -D"DEBUG_HASH=25" -D"DEBUG_HASH2=54" -c -o /home/polarim/cmcamac/.tmp_cmcamac.o /home/polarim/cmcamac/cmcamac.c
 
-deps_/home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.o := \
-  /home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.c \
+deps_/home/polarim/cmcamac/cmcamac.o := \
+  /home/polarim/cmcamac/cmcamac.c \
   /usr/src/kernels/2.6.32-431.23.3.el6.x86_64/include/linux/kconfig.h \
     $(wildcard include/config/h.h) \
     $(wildcard include/config/.h) \
@@ -607,6 +607,6 @@ deps_/home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.o := \
   /usr/src/kernels/2.6.32-431.23.3.el6.x86_64/arch/x86/include/asm/fcntl.h \
   include/asm-generic/fcntl.h \
 
-/home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.o: $(deps_/home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.o)
+/home/polarim/cmcamac/cmcamac.o: $(deps_/home/polarim/cmcamac/cmcamac.o)
 
-$(deps_/home/cfsd/alekseev/proj/cnipol/online/cmcamac/cmcamac.o):
+$(deps_/home/polarim/cmcamac/cmcamac.o):
