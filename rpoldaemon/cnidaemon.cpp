@@ -20,6 +20,7 @@
 #include <cdevRequestObject.h>
 #include <cdevCallback.h>
 #include <cdevSystem.h>
+#include <cdevCns/cdevCns.hxx>
 
 #include "globals.h"
 #include "rhicpol.h"
@@ -42,6 +43,7 @@ void handleGetAsync(int status, void* arg, cdevRequestObject& req, cdevData& dat
 /** */
 int main(int argc, char** argv)
 {
+   cdevCnsInit();
    // Hook Action button
 
    setbuf(stdout, NULL);

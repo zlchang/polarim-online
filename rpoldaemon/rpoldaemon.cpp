@@ -29,6 +29,7 @@
 #include <cdevRequestObject.h>
 #include <cdevCallback.h>
 #include <cdevSystem.h>
+#include <cdevCns/cdevCns.hxx>
 
 #include "globals.h"
 #include "rhicpol.h"
@@ -421,6 +422,8 @@ int main(int argc, char** argv)
       printf("You must select Upstream or Downstream! Exitting ...\n");
       return 0;
    }
+
+   cdevCnsInit();
 
    // Create logfile
    LogFile = fopen(LogFileName, "at");

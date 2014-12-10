@@ -78,13 +78,9 @@ ccommon /
 
 	call vzero(ichanntp, 96)
 	
-	print *, NumArgs, ' arguments'
-	
 	do i = 1, NumArgs
 	    call getarg(i, str)
 	    
-	    print *, 'ARG(', i, ') = ', str
-
 	    if (ipar.eq.1) then
 c	ipar=1 - get device name
 		device = str
@@ -170,6 +166,8 @@ c	output filename
 	    stop
 	endif	
 
+	if (isend.ne.0) call cdevinit();
+
 	if (fout.eq.'?') fout = fin(1:len_trim(fin)) // '.hbook'
 
 c Make that if no '-c' option given but n-tuple requested than all channels go to n-tuple
@@ -184,6 +182,8 @@ c Make that if no '-c' option given but n-tuple requested than all channels go t
 	        ichanntp(i) = 1
 	    enddo
 	endif
+
+	
 
 c Hook for test 90-degree detectors in yel1 and blu2 (run 2010/2011)
 c	if ((device(13:16).eq.'yel1').or.(device(13:16).eq.'blu2')) then

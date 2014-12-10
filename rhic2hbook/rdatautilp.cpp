@@ -1,3 +1,4 @@
+#include <cdevCns/cdevCns.hxx>
 #include "rcdev.h"
 #include <time.h>
 #include <errno.h>
@@ -19,6 +20,11 @@ extern "C" {
    void sendsubresult_(char *device, int len);
 }
 
+
+extern "C" {
+   void cdevinit_(void);
+}
+
 extern polDataStruct poldat_;
 
 //	Common /subrun/
@@ -34,6 +40,11 @@ extern polDataStruct poldat_;
 //} subrun_;
 extern SubRun subrun_;
 
+
+void cdevinit_(void)
+{
+   cdevCnsInit();
+}
 
 void sendresult_(char *device, int len)
 {

@@ -7,6 +7,7 @@
 #include <cdevDevice.h>
 #include <cdevData.h>
 #include <cdevGroup.h>
+#include <cdevCns/cdevCns.hxx>
 #include <stdio.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -28,7 +29,7 @@ int main(int argc, char **argv)
     int irc;
     char cmd[256];
 
-    printf("Starting sndpic...\n");
+    cdevCnsInit();
 
     if (argc != 4) {
 	printf("SNDPIC-Usage: sndpic device param picfile.gif\n");
