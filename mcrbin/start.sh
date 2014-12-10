@@ -1,5 +1,5 @@
 #!/bin/bash
 
-/home/polarim/polarim/bin/rpoldaemon.sh >>/dev/null &
+/home/polarim/bin/rpoldaemon.sh >>/dev/null &
 
 exit $?

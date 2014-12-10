@@ -1,6 +1,6 @@
 	subroutine Usage
 
-	print *, 'Usage: rhic2hbook [options] filein fileout'
+	print *, 'Usage: rhic2hbook [options] filein [fileout]'
 	print *, '       -s <device name> to send results to CDEV database'
 	print *, '       -n to write ntuples, otherwise only histograms'
 	print *, '       -r to write raw data ntuples'
@@ -78,8 +78,12 @@ ccommon /
 
 	call vzero(ichanntp, 96)
 	
+	print *, NumArgs, ' arguments'
+	
 	do i = 1, NumArgs
 	    call getarg(i, str)
+	    
+	    print *, 'ARG(', i, ') = ', str
 
 	    if (ipar.eq.1) then
 c	ipar=1 - get device name
@@ -154,12 +158,14 @@ c	input filename
 c	output filename
 		fout = str
 	    else
+		print *, 'Unknown option '//str
 		call Usage
 		stop 	
 	    endif
 	enddo
 
 	if (fin.eq.'?') then
+	    print *, 'No input file'
 	    call Usage
 	    stop
 	endif	

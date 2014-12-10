@@ -1,5 +1,5 @@
 #!/bin/csh 
 
-/home/polarim/polarim/bin/rpoldaemon.sh &
+/home/polarim/bin/rpoldaemon.sh &
 
 exit $?
