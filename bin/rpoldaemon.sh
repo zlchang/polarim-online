@@ -9,4 +9,4 @@ case $POLRING in
     *      ) echo "Wrong ring !!!"; exit     ;;
 esac
 
-${POLBIN}/rpoldaemon -$RING -l ${LOGDIR}/rpoldaemon${1}.log -r ${POLBIN}/rpolmeasure.sh 
+${POLBIN}/rpoldaemon -$RING -l ${LOGDIR}/rpoldaemon.log -r ${POLBIN}/rpolmeasure.sh 
