@@ -67,7 +67,8 @@ enum EMeasType {kMEASTYPE_UNKNOWN     = 0x00000000,
                 kMEASTYPE_EMIT_SCAN   = 0x00000010,
                 kMEASTYPE_TARGET_SCAN = 0x00000020,
                 kMEASTYPE_PROFILE_T   = 0x00000040,  // profile by time
-                kMEASTYPE_PROFILE_E   = 0x00000080}; // profile events
+                kMEASTYPE_PROFILE_E   = 0x00000080,  // profile events
+                kMEASTYPE_HJET        = 0x00000100}; // HJET
 
 
 struct RecordHeaderStruct

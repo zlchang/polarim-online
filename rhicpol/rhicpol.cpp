@@ -242,14 +242,9 @@ int main(int argc, char **argv)
 
    t = time(NULL);
 
-   rhicpol_process_options();
 
    fprintf(LogFile, ">>>>> %s Starting measurement for device=%s\n", cctime(&t), DeviceName);
 
-   if (gMeasType == kMEASTYPE_UNKNOWN)
-      fprintf(LogFile, "RHICPOL-WARN : Measurement type is unknown. Use -T option, don't use -g, or check CDEV settings\n");
-   else
-      fprintf(LogFile, "RHICPOL-INFO : Measurement type is %#010x\n", gMeasType);
 
    if (iHistOnly) Conf.OnlyHist = 1;   // command line has priority
 
@@ -262,12 +257,18 @@ int main(int argc, char **argv)
    beamData.beamEnergyM = 100.0;       // defalut for no CDEV
 
    // check CDEV
-   if (gUseCdev && getenv("CDEVDDL") == NULL) {      // we check if CDEV varables (at least one) are defined
+   if (gUseCdev && getenv("CDEV") == NULL) {      // we check if CDEV varables (at least one) are defined
       gUseCdev = false;
       fprintf(LogFile, "RHICPOL-WARN : No CDEV environment found.\n");
       fprintf(LogFile, "               Run may be unusable. Try -g to suppress this message.\n");
       polData.statusS |= WARN_INT;
    }
+
+   rhicpol_process_options();
+   if (gMeasType == kMEASTYPE_UNKNOWN)
+      fprintf(LogFile, "RHICPOL-WARN : Measurement type is unknown. Use -T option, don't use -g, or check CDEV settings\n");
+   else
+      fprintf(LogFile, "RHICPOL-INFO : Measurement type is %#010x\n", gMeasType);
 
    // Make recRing
    if (iCicleRun) {    // for HJET
@@ -533,12 +534,11 @@ void rhicpol_print_usage()
           "\t-l filename : logfile name, default is stdout;\n"
           "\t-M : do not read memory - only histograms;\n"
           "\t-P : Pulse PROG pin for all WFDs;\n"
-          "\t-R : make subruns - ramp measurement;\n"
-          "\t-T [type] : measurement type. Can be 'test', 'alpha', 'cdev' or empty string\n"
+          "\t-R[N] : make N subruns - ramp measurement;\n"
+          "\t-T[type] : measurement type. Can be 'test', 'alpha', 'hjet', 'cdev' or empty string\n"
           "\t-t time : maximum time of the measurement, seconds;\n"
           "\t-v level : verbose output.\n");
 }
-
 
 /** */
 void rhicpol_process_options()
@@ -552,10 +552,13 @@ void rhicpol_process_options()
       if (gUseCdev) gMeasType = getCDEVMeasType();
       else          gMeasType = kMEASTYPE_UNKNOWN;
    }
-   else if (gOptMeasType.compare("test") == 0){ 
+   else if (gOptMeasType.compare("test") == 0) { 
      gMeasType = kMEASTYPE_TEST;
    }
-   else if (gOptMeasType.compare("alpha") == 0){
+   else if (gOptMeasType.compare("hjet") == 0) { 
+     gMeasType = kMEASTYPE_HJET;
+   }
+   else if (gOptMeasType.compare("alpha") == 0) {
       gMeasType = kMEASTYPE_ALPHA;
    }
    else{

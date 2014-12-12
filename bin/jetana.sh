@@ -6,7 +6,7 @@
 RUN=$1
 
 export HJET_ROOTFILE="$POLSTORE/root/"$RUN".root"
-export HJET_DATAFILE="$POLSTORE/"$RUN".data"
+export HJET_DATAFILE="$POLSTORE/data/"$RUN".data"
 export HJET_DAQ=""
 
 #export HJET_CALIB="../config/calib_${2:-1103.605}.dat"
@@ -30,7 +30,7 @@ export HJET_DAQ=""
 #export HJET_CALIB="$CONFIG/calib_${2:-0802.807}.dat"  # Run12
 #export HJET_CALIB="$CONFIG/calib_${2:-3101.802}.dat"  # Run12
 #export HJET_CALIB="$CONFIG/calib_${2:-0703.902}.dat"  # Run13
-export HJET_CALIB="$POLCON/calib_${2:-1403.904}.dat"  # Run13
+export HJET_CALIB="${POLCONF}/calib_${2:-1403.904}.dat"  # Run13
 if [ "x"$1 == "x" ] ; then 
     echo "Usage: ./jetanal.sh <RUN> [<CALIB>]"
 else

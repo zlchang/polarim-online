@@ -1,4 +1,3 @@
-
 #define _FILE_OFFSET_BITS 64        // to handle >2Gb files
 
 #include <ctype.h>
