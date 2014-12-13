@@ -16,10 +16,10 @@
 #include <TH2F.h>
 #include <TFile.h>
 #include <TTimer.h>
-//#include "rhicpol.h"
-//#include "rpoldata.h"
-#include "rhicpol_old.h"
-#include "rpoldata_old.h"
+#include "../include/rhicpol.h"
+#include "../include/rpoldata.h"
+//#include "rhicpol_old.h"
+//#include "rpoldata_old.h"
 #include "HCut.h"
 
 #define MAXWAVEFORMS	100

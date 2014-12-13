@@ -1,8 +1,6 @@
 #!/bin/csh
 
-echo "check.csh" >> /home/blue/2015/log/log.log
-
-set id = `ps -e | grep rpoldaemon | grep $USER | grep -v grep | awk '{ print $2}'`
+set id = `ps -e | grep rpoldaemon | grep $USER | grep -v grep | awk '{ print $1}'`
 
 if ( $id != "" ) then
     exit 0 

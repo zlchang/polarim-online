@@ -40,7 +40,7 @@ public:
     };
 //	Other functions
     void Draw(int type = 0);
-    void Print(char *name);
+    void Print(const char *name);
 };
 
 #endif /* HCUT_H */

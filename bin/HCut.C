@@ -19,7 +19,7 @@ void HCut::Draw(int type)
     }
 }
 
-void HCut::Print(char *name) 
+void HCut::Print(const char *name) 
 {
     printf("%f < %s < %f\n", fMin, name, fMax);
 }

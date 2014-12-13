@@ -158,10 +158,10 @@ void HJET::Save(char *fname)
     if (fname != NULL) {
 	_fname = fname;
     } else if (Beam[0] != NULL) {
-	sprintf(str, "%ld.root", Beam[0]->fillNumberM);
+	sprintf(str, "%d.root", Beam[0]->fillNumberM);
 	_fname = str;
     } else {
-	_fname = "hjet_hist.root";
+	_fname = (char *) "hjet_hist.root";
     }
     f = new TFile(_fname, "RECREATE");
     if (!f->IsOpen()) {
@@ -543,7 +543,7 @@ void HJET::ShowStatistics(void)
     if (Beam[0] == NULL) {
 	printf("The startup. No beam data record yet. %d records so far.\n", RecNum);
     } else {
-	printf("Fill:%ld: %d records, Events: total = %d, Good Yellow = %d, Blue = %d.\n", 
+	printf("Fill:%d: %d records, Events: total = %d, Good Yellow = %d, Blue = %d.\n", 
 	    Beam[0]->fillNumberM, RecNum, EventCounter, 
 	    (int)HBUNCH[0]->GetEntries(), (int)HBUNCH[1]->GetEntries());
     }
@@ -1181,7 +1181,7 @@ void *DataThreadFun(void *arg)
 	}
 
 	if (rec->header.len > (long) (BSIZE*sizeof(int))) {
-	    printf("\nHJET-ERR : Very large record (%ld). Skipping...\n", rec->header.len);
+	    printf("\nHJET-ERR : Very large record (%d). Skipping...\n", rec->header.len);
 	    for (j=sizeof(recordHeaderStruct); j<rec->header.len; j += i) {
 		k = rec->header.len - j;
 		if (k > (int) (BSIZE*sizeof(int) - sizeof(recordHeaderStruct))) 
@@ -1255,7 +1255,7 @@ void *DataThreadFun(void *arg)
 	    if (k == 0) {
 		str = (char *) malloc(strlen(hjet->Canvas->GetTitle())+20);
 		if (str != NULL) {
-		    sprintf(str, "%s Fill=%ld", hjet->Canvas->GetTitle(), hjet->Beam[0]->fillNumberM);
+		    sprintf(str, "%s Fill=%d", hjet->Canvas->GetTitle(), hjet->Beam[0]->fillNumberM);
 		    hjet->Canvas->SetTitle(str);
 		    free(str);
 		}
@@ -1306,7 +1306,7 @@ void *DataThreadFun(void *arg)
 		subLen = sizeof(subheadStruct) + 
 		    (longWave->subhead.Events + 1)*(sizeof(longWaveStruct) - 1 + wfLen);
 		if (k + subLen > rec->header.len - sizeof(recordHeaderStruct)) {
-		    printf("\nHJET-WARN : record %d format error %d + %d + 16 %ld. Skipping...\n",
+		    printf("\nHJET-WARN : record %d format error %d + %d + 16 %d. Skipping...\n",
 			hjet->RecNum, k, subLen, rec->header.len);
 		    break;
 		}
@@ -1354,8 +1354,7 @@ void *DataThreadFun(void *arg)
 	case REC_WCMADO:
 	    break;
 	default:	// skip any unknown records
-	    printf("\nUnknown record %8.8lX encountered in input data file\n",
-		rec->header.type & REC_TYPEMASK);
+//	    printf("\nUnknown record %8.8X encountered in input data file\n", rec->header.type & REC_TYPEMASK);
 	    break;
 	}
     }
