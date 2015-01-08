@@ -257,7 +257,7 @@ int main(int argc, char **argv)
    beamData.beamEnergyM = 100.0;       // defalut for no CDEV
 
    // check CDEV
-   if (gUseCdev && getenv("CDEV") == NULL) {      // we check if CDEV varables (at least one) are defined
+   if (gUseCdev && getenv("CDEV_NAME_SERVER") == NULL) {      // we check if CDEV varables (at least one) are defined
       gUseCdev = false;
       fprintf(LogFile, "RHICPOL-WARN : No CDEV environment found.\n");
       fprintf(LogFile, "               Run may be unusable. Try -g to suppress this message.\n");
