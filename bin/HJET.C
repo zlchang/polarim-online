@@ -13,6 +13,31 @@
 #include <TGraph.h>
 #include "HJET.h"
 
+const GeometryStruct Geom[MAXSICHAN] = {
+//    int idet;		// physical detector number
+//    int by;		// blue=0 / yellow=1 
+//    int io;		// inner=0 / outer=1
+//    float z;		// distance along the beam, cm
+//	I assume here pitch = 3.75 mm and distance from the flange center to the 1st strip 11.25 mm
+    {0, 1, 0, 5.250}, {0, 1, 0, 4.875}, {0, 1, 0, 4.500}, {0, 1, 0, 4.125}, {0, 1, 0, 3.750}, {0, 1, 0, 3.375},		// Ch 1  - 6
+    {0, 1, 0, 3.000}, {0, 1, 0, 2.625}, {0, 1, 0, 2.250}, {0, 1, 0, 1.875}, {0, 1, 0, 1.500}, {0, 1, 0, 1.125},		// Ch 7  - 12
+    {1, 1, 0, 1.125}, {1, 1, 0, 1.500}, {1, 1, 0, 1.875}, {1, 1, 0, 2.250}, {1, 1, 0, 2.625}, {1, 1, 0, 3.000},		// Ch 13 - 18
+    {1, 1, 0, 3.375}, {1, 1, 0, 3.750}, {1, 1, 0, 4.125}, {1, 1, 0, 4.500}, {1, 1, 0, 4.875}, {1, 1, 0, 5.250},		// Ch 19 - 24
+    {2, 0, 0, 5.250}, {2, 0, 0, 4.875}, {2, 0, 0, 4.500}, {2, 0, 0, 4.125}, {2, 0, 0, 3.750}, {2, 0, 0, 3.375},		// Ch 25 - 30
+    {2, 0, 0, 3.000}, {2, 0, 0, 2.625}, {2, 0, 0, 2.250}, {2, 0, 0, 1.875}, {2, 0, 0, 1.500}, {2, 0, 0, 1.125},		// Ch 31 - 36
+    {3, 0, 0, 1.125}, {3, 0, 0, 1.500}, {3, 0, 0, 1.875}, {3, 0, 0, 2.250}, {3, 0, 0, 2.625}, {3, 0, 0, 3.000},		// Ch 37 - 42
+    {3, 0, 0, 3.375}, {3, 0, 0, 3.750}, {3, 0, 0, 4.125}, {3, 0, 0, 4.500}, {3, 0, 0, 4.875}, {3, 0, 0, 5.250},		// Ch 43 - 48
+    {4, 1, 1, 5.250}, {4, 1, 1, 4.875}, {4, 1, 1, 4.500}, {4, 1, 1, 4.125}, {4, 1, 1, 3.750}, {4, 1, 1, 3.375},		// Ch 49 - 54
+    {4, 1, 1, 3.000}, {4, 1, 1, 2.625}, {4, 1, 1, 2.250}, {4, 1, 1, 1.875}, {4, 1, 1, 1.500}, {4, 1, 1, 1.125},		// Ch 55 - 60
+    {5, 1, 1, 1.125}, {5, 1, 1, 1.500}, {5, 1, 1, 1.875}, {5, 1, 1, 2.250}, {5, 1, 1, 2.625}, {5, 1, 1, 3.000},		// Ch 61 - 66
+    {5, 1, 1, 3.375}, {5, 1, 1, 3.750}, {5, 1, 1, 4.125}, {5, 1, 1, 4.500}, {5, 1, 1, 4.875}, {5, 1, 1, 5.250},		// Ch 67 - 72
+    {6, 0, 1, 1.125}, {6, 0, 1, 1.500}, {6, 0, 1, 1.875}, {6, 0, 1, 2.250}, {6, 0, 1, 2.625}, {6, 0, 1, 3.000},		// Ch 73 - 78
+    {6, 0, 1, 3.375}, {6, 0, 1, 3.750}, {6, 0, 1, 4.125}, {6, 0, 1, 4.500}, {6, 0, 1, 4.875}, {6, 0, 1, 5.250},		// Ch 79 - 84
+    {7, 0, 1, 1.125}, {7, 0, 1, 1.500}, {7, 0, 1, 1.875}, {7, 0, 1, 2.250}, {7, 0, 1, 2.625}, {7, 0, 1, 3.000},		// Ch 85 - 90
+    {7, 0, 1, 3.375}, {7, 0, 1, 3.750}, {7, 0, 1, 4.125}, {7, 0, 1, 4.500}, {7, 0, 1, 4.875}, {7, 0, 1, 5.250},		// Ch 90 - 96
+    {-1, 0, 0, 0},    {-1, 0, 0, 0},    {-1, 0, 0, 0},    {-1, 0, 0, 0}};						// no detectors 
+
+const char DetName[8][8] = {"IYU", "IYD", "IBD", "IBU", "OYD", "OYU", "OBU", "OBD"};
 
 HJET::HJET(char *fname) : TNamed("HJET", "Hydrogen Jet Online Data")
 {
@@ -833,7 +858,7 @@ TH2F *HJET::CreateHistATDet(int det)
     int tmax;
     
     sprintf(strs, "HATDET%d", det+1);
-    sprintf(strl, "Hydrogen jet Time versus Amplitude Det%d", det+1);
+    sprintf(strl, "Hydrogen jet Time versus Amplitude Det%d (%s)", det+1, DetName[det]);
     tmax = (2 - Config->CSR.split.B120)*45;	// maximum time: 45/90 for 60/120 bunch mode
 //    gROOT->cd();		// in memory
     h = new TH2F(strs, strl, 100, 0, 6000, tmax, 0, tmax*Config->WFDTUnit);	// 6000 kev * 107.1 ns
@@ -867,17 +892,19 @@ TH2F *HJET::CreateHistANDet(int det)
     float angmax;
     
     sprintf(strs, "HANDET%d", det+1);
-    sprintf(strl, "Hydrogen jet Energy versus angle Det%d", det+1);
+    sprintf(strl, "Hydrogen jet Energy versus angle Det%d (%s)", det+1, DetName[det]);
     // angmax = 3.78/Config->TOFLength;
     // h = new TH2F(strs, strl, 17, -angmax, angmax, 50, 0, 6000);
-    angmax = 10*0.42/Config->TOFLength;
-    h = new TH2F(strs, strl, 40, -angmax, angmax, 50, 0, 6000);
+    angmax = 6/Config->TOFLength;
+    h = new TH2F(strs, strl, 40, -angmax, angmax, 50, 0, 8000);
     h->GetXaxis()->SetTitle("rad");
     h->GetYaxis()->SetTitle("E_{kin}, keV");
     h->SetFillColor(4);
     
     return h;
 }
+
+//	????????????????????????????????????????????????????????????????????????
 
 /*  Create histogram of ADC counts, i.e., histogram of NTEvent->ampl  */
 TH1F *HJET::CreateHistC(int chan)

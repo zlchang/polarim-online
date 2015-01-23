@@ -26,9 +26,16 @@
 #define MAXSICHAN	100
 #define MAXQUEUE	100
 #define LINEPOINTS	6
-#define DETECTORS	6
+#define DETECTORS	8
 #define BUNCHCORR	40 //RUN6 80, RUN8 40 Hiromi Feb. 25, 2008
 #define LARGE_VALUE	(1.0E50)
+
+typedef struct {
+    int idet;		// physical detector number
+    int by;		// blue=0 / yellow=1 
+    int io;		// inner=0 / outer=1
+    float z;		// distance along the beam, cm
+} GeometryStruct;
 
 typedef struct {
     int chan;			// Channel number

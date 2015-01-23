@@ -116,8 +116,9 @@ trap myhardexit SIGTERM
 case $MODE in
     Run* | Data* )
         # Regular run
-        $POLCMD $OPT -l $LOG -i $CNF -f $DATA -d $POLARIM -c "$MODE $POLARIM" >> $ERRLOG 2>&1 &
+        $POLCMD $OPT -l $LOG -i $CNF -f ${DATA}.tmp -d $POLARIM -c "$MODE $POLARIM" >> $ERRLOG 2>&1 &
         mywait
+        mv ${DATA}.tmp ${DATA}
         trap myignore SIGINT    # ignore Stop on analysis stage
         if [ $IRC -eq 0 ]; then # analyze data if the measurement was OK
             echo "Starting rhic2hbook..." >> $ALOG
@@ -149,8 +150,9 @@ case $MODE in
         ;;
     Emit* )
         # Emmitance measurement
-        $POLCMD $OPT -l $LOG -i $CNF -f $DATA -d $POLARIM -c "$MODE $POLARIM" >> $ERRLOG 2>&1 &
+        $POLCMD $OPT -l $LOG -i $CNF -f ${DATA}.tmp -d $POLARIM -c "$MODE $POLARIM" >> $ERRLOG 2>&1 &
         mywait
+        mv ${DATA}.tmp ${DATA}
         trap myignore SIGINT    # ignore Stop on analysis stage
         if [ $IRC -eq 0 ]; then # analyze data if the measurement was OK
             $EMITCMD -f $DATA -o $ROOTFILE -p $PSFILE -d $POLARIM >> $ALOG 2>&1
@@ -159,8 +161,9 @@ case $MODE in
         ;;
     Pol* )
         # Ramp measurement
-        $POLCMD $OPT -M -R -l $LOG -i $CNF -f $DATA -d $POLARIM -c "$MODE $POLARIM" >> $ERRLOG 2>&1 &
+        $POLCMD $OPT -M -R -l $LOG -i $CNF -f ${DATA}.tmp -d $POLARIM -c "$MODE $POLARIM" >> $ERRLOG 2>&1 &
         mywait
+        mv ${DATA}.tmp ${DATA}
         trap myignore SIGINT    # ignore Stop on analysis stage
         if [ $IRC -eq 0 ]; then # analyze data if the measurement was OK
             $ANACMD -l -s $POLARIM -N -1 $DATA $HBOOKFILE >> $ALOG 2>&1
