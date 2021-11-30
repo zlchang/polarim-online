@@ -3,7 +3,8 @@
 
 #include <stdint.h>
 
-#include "TBuffer.h"
+//#include "TBuffer.h"
+//#include "TObject.h" //zchang
 
 #include "rhicpol.h"
 #include "static_assert.h"
@@ -81,8 +82,9 @@ struct RecordHeaderStruct
        int32_t delim;     // when read from memory
    } timestamp;
 
-   RecordHeaderStruct & operator=(const RecordHeaderStruct &rec);
-   void Streamer(TBuffer &buf);
+   //RecordHeaderStruct & operator=(const RecordHeaderStruct &rec);
+   //void Streamer(TBuffer &buf);
+   //ClassDef(RecordHeaderStruct, 1);
 
 };
 
@@ -118,13 +120,13 @@ typedef struct
 struct RecordMachineParams
 {
    RecordHeaderStruct header;
-   Int_t   fCavity197MHzVoltage[N_BEAMS];
-   Float_t fSnakeCurrents[N_BEAMS];
-   Float_t fStarRotatorCurrents[N_BEAMS];
-   Float_t fPhenixRotatorCurrents[N_BEAMS];
+   int32_t   fCavity197MHzVoltage[N_BEAMS];
+   float fSnakeCurrents[N_BEAMS];
+   float fStarRotatorCurrents[N_BEAMS];
+   float fPhenixRotatorCurrents[N_BEAMS];
 
-   RecordMachineParams & operator=(const RecordMachineParams &rec);
-   void Streamer(TBuffer &buf);
+   //RecordMachineParams & operator=(const RecordMachineParams &rec);
+   //void Streamer(TBuffer &buf);
 };
 
 
@@ -142,13 +144,13 @@ typedef struct {
 struct RecordTargetParams
 {
    RecordHeaderStruct header;
-   Int_t fVelocity;
-   Int_t fProfileStartPosition;
-   Int_t fProfileEndPosition;
-   Int_t fProfilePeakPosition;
+   int32_t fVelocity;
+   int32_t fProfileStartPosition;
+   int32_t fProfileEndPosition;
+   int32_t fProfilePeakPosition;
 
-   RecordTargetParams& operator=(const RecordTargetParams &rec);
-   void Streamer(TBuffer &buf);
+   //RecordTargetParams& operator=(const RecordTargetParams &rec);
+   //void Streamer(TBuffer &buf);
 };
 
 typedef struct {
@@ -198,16 +200,16 @@ typedef struct {
 struct RecordWcm
 {
    RecordHeaderStruct header;
-   Float_t  fFillDataM[360];      // like in wcmDataStruct
-   Float_t  fWcmBeamM;            // like in wcmDataStruct
-   Double_t fBunchDataM[360];
-   Double_t fBunchLengthM;
-   Double_t fProfileHeaderM[32];
+   float fFillDataM[360];      // like in wcmDataStruct
+   float  fWcmBeamM;            // like in wcmDataStruct
+   double fBunchDataM[360];
+   double fBunchLengthM;
+   double fProfileHeaderM[32];
    //UChar_t* fProfileDataM;
 
-   RecordWcm();
-   RecordWcm& operator=(const RecordWcm &rec);
-   void Print();
+   //RecordWcm();
+   //RecordWcm& operator=(const RecordWcm &rec);
+   //void Print();
 };
 
 
@@ -224,13 +226,13 @@ typedef struct TRecordConfigRhicStruct {
                                // Actual length is defined from the record
                                // length or from the NumChannels member
 
-   void Print(const Option_t* opt="") const;
-   void Streamer(TBuffer &buf);
+   //void Print(const Option_t* opt="") const;
+   //void Streamer(TBuffer &buf);
 
 } recordConfigRhicStruct;
 
-TBuffer & operator<<(TBuffer &buf, TRecordConfigRhicStruct *&rec);
-TBuffer & operator>>(TBuffer &buf, TRecordConfigRhicStruct *&rec);
+//TBuffer & operator<<(TBuffer &buf, TRecordConfigRhicStruct *&rec);
+//TBuffer & operator>>(TBuffer &buf, TRecordConfigRhicStruct *&rec);
 
 // New data structures for the V9 version, but keeping the same names
 
